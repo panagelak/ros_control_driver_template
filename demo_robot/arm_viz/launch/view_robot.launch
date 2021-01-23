@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Arm configuration to view. See arm_description for details. -->
+
+  <!-- robot parameters -->
+  <arg name="sim" default="false"/>
+  <arg name="robot" default="generic_arm"/> 
+  
+  <!-- send urdf to param server -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find arm_description)/urdf/robots/$(arg robot)/$(arg robot)_robot.urdf.xacro' sim:=$(arg sim)"
+  />
+
+  <!--Start robot state publisher -->
+  <node name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+  />
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_viz)/rviz/view_robot.rviz" />
+
+</launch>

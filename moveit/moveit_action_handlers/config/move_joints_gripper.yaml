@@ -1,0 +1,2 @@
+move_group: gripper
+action_server_name: move_tojoints_action_server/gripper/action

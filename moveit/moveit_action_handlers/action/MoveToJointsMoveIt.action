@@ -1,0 +1,17 @@
+##Description: Moves robot arm to a specified joint space.
+
+#goal definition
+moveit_action_handlers/PropertyValuePair[] joint_pairs # list of joint_pairs (joint name + value)
+float32 endEffectorVelocity
+float32 endEffectorAcceleration
+float32 timeoutSeconds #if this action cannot be completed within this time period it should be considered failed.
+---
+#result definition
+bool success
+uint64 millis_passed
+string status  #Use the constants of ActionResultStatusConstants in the status field
+---
+#feedback
+bool success
+uint64 millis_passed
+string status  #Use the constants of ActionFeedbackStatusConstants in the status field

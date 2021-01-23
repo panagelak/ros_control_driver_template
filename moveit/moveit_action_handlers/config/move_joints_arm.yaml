@@ -1,0 +1,2 @@
+move_group: arm 
+action_server_name: move_tojoints_action_server/arm/action

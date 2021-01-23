@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>generic_hardware_interface</name>
+  <version>0.1.0</version>
+  <description>The generic_hardware_interface package</description>
+
+  <maintainer email="panagiotis.angelakis.robot@gmail.com">Panagiotis</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>boost</build_depend>
+  
+  <depend>roscpp</depend>
+  <depend>hardware_interface</depend>
+  <depend>controller_manager</depend>
+  <depend>rosparam_shortcuts</depend>
+  <depend>arm_msgs</depend>
+  <depend>generic_robot_driver</depend>
+
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+
+  <export>
+  </export>
+  
+</package>

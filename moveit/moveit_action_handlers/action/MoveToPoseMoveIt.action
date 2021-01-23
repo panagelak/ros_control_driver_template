@@ -1,0 +1,24 @@
+##Description: Moves robot arm to a specified pose relative to the frame in header.frame_id of target_pose
+#goal definition
+
+#Used to indicate which hardcoded motion constraint to use 
+#e.g 0 no constraint, 1 keep the same end effector orientation
+int32 constraint_mode
+#similar to geometry_msgs/PoseStamped but using euler instead of quaternion
+#at target_pose->header.frame_id define the tf frame 
+# which the pose will be calculated relative from
+moveit_action_handlers/PoseStamped target_pose
+
+float32 endEffectorVelocity
+float32 endEffectorAcceleration
+float32 timeoutSeconds #if this action cannot be completed within this time period it should be considered failed.
+---
+#result definition
+bool success
+uint64 millis_passed
+string status  #Use the constants of ActionResultStatusConstants in the status field
+---
+#feedback
+bool success
+uint64 millis_passed
+string status  #Use the constants of ActionFeedbackStatusConstants in the status field

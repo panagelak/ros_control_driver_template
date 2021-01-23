@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- MoveToPose Action Server -MoveIt -->
+    <include file="$(find moveit_action_handlers)/launch/include/move_topose_arm_action_server.launch"/>
+    
+    <!-- Joint Arm Action Server - MoveIt -->
+    <include file="$(find moveit_action_handlers)/launch/include/move_joints_arm_action_server.launch"/>
+
+    <!-- Joint Gripper Action Server - MoveIt -->
+    <include file="$(find moveit_action_handlers)/launch/include/move_joints_gripper_action_server.launch"/>
+</launch>
+

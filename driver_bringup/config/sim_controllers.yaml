@@ -1,0 +1,55 @@
+# Publish all joint states ----------------------------------
+joint_state_controller:
+   type:         joint_state_controller/JointStateController
+   publish_rate: 50
+
+# Joint Trajectory Controller - position based -------------------------------
+# For detailed explanations of parameter see http://wiki.ros.org/joint_trajectory_controller
+arm_controller:
+   type: position_controllers/JointTrajectoryController
+   joints:
+     - shoulder_pan_joint
+     - shoulder_lift_joint
+     - elbow_joint
+     - wrist_1_joint
+     - wrist_2_joint
+     - wrist_3_joint
+   constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      shoulder_pan_joint: {trajectory: 0.2, goal: 0.1}
+      shoulder_lift_joint: {trajectory: 0.2, goal: 0.1}
+      elbow_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_1_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_2_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_3_joint: {trajectory: 0.2, goal: 0.1}
+   stop_trajectory_duration: 0.5
+   state_publish_rate: 50  # Frequency (in Hz) at which the controller state is published.
+   action_monitor_rate: 20 # Frequency (in Hz) at which the action goal status is monitored. This is an advanced parameter that should not require changing.
+
+# Joint Trajectory Controller - position based -------------------------------
+# For detailed explanations of parameter see http://wiki.ros.org/joint_trajectory_controller
+gripper_controller:
+   type: position_controllers/JointTrajectoryController
+   joints: 
+     - finger1_joint
+     - finger2_joint
+   constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      finger1_joint: {trajectory: 0.2, goal: 0.1}
+      finger2_joint: {trajectory: 0.2, goal: 0.1}
+   stop_trajectory_duration: 0.5
+   state_publish_rate: 50  # Frequency (in Hz) at which the controller state is published.
+   action_monitor_rate: 20 # Frequency (in Hz) at which the action goal status is monitored. This is an advanced parameter that should not require changing.
+
+# Used for moveit_jog
+joint_group_arm_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+     - shoulder_pan_joint
+     - shoulder_lift_joint
+     - elbow_joint
+     - wrist_1_joint
+     - wrist_2_joint
+     - wrist_3_joint

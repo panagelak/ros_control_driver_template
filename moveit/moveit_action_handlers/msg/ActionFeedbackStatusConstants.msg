@@ -1,0 +1,5 @@
+string PLANNING=Planning
+string EXECUTING=Executing
+string EMERGENCY_STOP=EmergencyStop
+string OPERATIONAL_EXCEPTION=OperationalException
+string CANCELLING=Cancelling

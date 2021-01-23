@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Move Joints GRIPPER Action Server -MoveIt -->
+    <node pkg="moveit_action_handlers" type="move_joints_action_server_node" name="move_joints_gripper_action_server_node" output="screen">
+        <rosparam file="$(find moveit_action_handlers)/config/move_joints_gripper.yaml" command="load"/>
+    </node>
+    
+
+</launch>
+

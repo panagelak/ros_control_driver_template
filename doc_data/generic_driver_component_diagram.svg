@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="444px" preserveAspectRatio="none" style="width:833px;height:444px;" version="1.1" viewBox="0 0 833 444" width="833px" zoomAndPan="magnify"><defs><filter height="300%" id="f1g8wowpne6sas" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[f8c67dae79871263af26454ede3c252f]
+cluster moveit--><polygon fill="#FFFFFF" filter="url(#f1g8wowpne6sas)" points="16,6,149,6,156,28.2969,231,28.2969,231,199,16,199,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="156" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="20" y="20.9951">MoveIt Handlers</text><!--MD5=[c5fe073bede82201872205dfa810e54c]
+cluster gnHW--><polygon fill="#FFFFFF" filter="url(#f1g8wowpne6sas)" points="52,207,278,207,285,229.2969,449,229.2969,449,437,52,437,52,207" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="52" x2="285" y1="229.2969" y2="229.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="220" x="56" y="221.9951">Generic Hardware Interface</text><!--MD5=[e5b63ed62a8b9e6707f6253ff8b6a62f]
+cluster gnDriver--><polygon fill="#FFFFFF" filter="url(#f1g8wowpne6sas)" points="493,207,614,207,621,229.2969,653,229.2969,653,316,493,316,493,207" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="493" x2="621" y1="229.2969" y2="229.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="115" x="497" y="221.9951">Generic Driver</text><!--MD5=[0bc03e192e6e5971e2f6fc0e77c244dd]
+cluster servoDriver--><polygon fill="#FFFFFF" filter="url(#f1g8wowpne6sas)" points="697,244,802,244,809,266.2969,816,266.2969,816,388,697,388,697,244" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="697" x2="809" y1="266.2969" y2="266.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="99" x="701" y="258.9951">Servo Driver</text><!--MD5=[156375b85caf704aa43cc352b259b73b]
+class movetojoints--><rect codeLine="7" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="60.8047" id="movetojoints" style="stroke:#A80036;stroke-width:1.5;" width="187" x="30" y="33.5"/><ellipse cx="45" cy="49.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M47.9688,55.1406 Q47.3906,55.4375 46.75,55.5781 Q46.1094,55.7344 45.4063,55.7344 Q42.9063,55.7344 41.5781,54.0938 Q40.2656,52.4375 40.2656,49.3125 Q40.2656,46.1875 41.5781,44.5313 Q42.9063,42.875 45.4063,42.875 Q46.1094,42.875 46.75,43.0313 Q47.4063,43.1875 47.9688,43.4844 L47.9688,46.2031 Q47.3438,45.625 46.75,45.3594 Q46.1563,45.0781 45.5313,45.0781 Q44.1875,45.0781 43.5,46.1563 Q42.8125,47.2188 42.8125,49.3125 Q42.8125,51.4063 43.5,52.4844 Q44.1875,53.5469 45.5313,53.5469 Q46.1563,53.5469 46.75,53.2813 Q47.3438,53 47.9688,52.4219 L47.9688,55.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="155" x="59" y="53.6543">MoveJointsHandlerServer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="31" x2="216" y1="65.5" y2="65.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="31" x2="216" y1="73.5" y2="73.5"/><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="38" y="81.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="50" y="87.7104">executeCallback()</text><!--MD5=[a401678287ce87b8c8b6775048936868]
+class movetopose--><rect codeLine="10" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="60.8047" id="movetopose" style="stroke:#A80036;stroke-width:1.5;" width="199" x="24" y="129.5"/><ellipse cx="39" cy="145.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M41.9688,151.1406 Q41.3906,151.4375 40.75,151.5781 Q40.1094,151.7344 39.4063,151.7344 Q36.9063,151.7344 35.5781,150.0938 Q34.2656,148.4375 34.2656,145.3125 Q34.2656,142.1875 35.5781,140.5313 Q36.9063,138.875 39.4063,138.875 Q40.1094,138.875 40.75,139.0313 Q41.4063,139.1875 41.9688,139.4844 L41.9688,142.2031 Q41.3438,141.625 40.75,141.3594 Q40.1563,141.0781 39.5313,141.0781 Q38.1875,141.0781 37.5,142.1563 Q36.8125,143.2188 36.8125,145.3125 Q36.8125,147.4063 37.5,148.4844 Q38.1875,149.5469 39.5313,149.5469 Q40.1563,149.5469 40.75,149.2813 Q41.3438,149 41.9688,148.4219 L41.9688,151.1406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="167" x="53" y="149.6543">MoveToPoseHandlerServer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="25" x2="222" y1="161.5" y2="161.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="25" x2="222" y1="169.5" y2="169.5"/><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="32" y="177.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="44" y="183.7104">executeCallback()</text><!--MD5=[fd7dac2faad43e40ffe49d2ad4b1592a]
+class base--><rect codeLine="17" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="86.4141" id="base" style="stroke:#A80036;stroke-width:1.5;" width="101" x="73" y="343"/><ellipse cx="96.1" cy="359" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M96.2094,354.3438 L95.0531,359.4219 L97.3813,359.4219 L96.2094,354.3438 Z M94.725,352.1094 L97.7094,352.1094 L101.0688,364.5 L98.6156,364.5 L97.85,361.4375 L94.5688,361.4375 L93.8188,364.5 L91.3813,364.5 L94.725,352.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="51" x="111.9" y="363.1543">HWBase</text><line style="stroke:#A80036;stroke-width:1.5;" x1="74" x2="173" y1="375" y2="375"/><line style="stroke:#A80036;stroke-width:1.5;" x1="74" x2="173" y1="383" y2="383"/><ellipse cx="84" cy="394" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="73" x="93" y="397.2104">virtual read()</text><ellipse cx="84" cy="406.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="93" y="410.0151">update()</text><ellipse cx="84" cy="419.6094" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="75" x="93" y="422.8198">virtual write()</text><!--MD5=[d9847530b5dea828dbcbb50914b76f30]
+class interface--><rect codeLine="22" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="73.6094" id="interface" style="stroke:#A80036;stroke-width:1.5;" width="158" x="283" y="234"/><ellipse cx="298" cy="250" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M293.9219,245.7656 L293.9219,243.6094 L301.3125,243.6094 L301.3125,245.7656 L298.8438,245.7656 L298.8438,253.8438 L301.3125,253.8438 L301.3125,256 L293.9219,256 L293.9219,253.8438 L296.3906,253.8438 L296.3906,245.7656 L293.9219,245.7656 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="126" x="312" y="254.1543">GenericHWInterface</text><line style="stroke:#A80036;stroke-width:1.5;" x1="284" x2="440" y1="266" y2="266"/><line style="stroke:#A80036;stroke-width:1.5;" x1="284" x2="440" y1="274" y2="274"/><ellipse cx="294" cy="285" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="34" x="303" y="288.2104">read()</text><ellipse cx="294" cy="297.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="303" y="301.0151">write()</text><!--MD5=[6038825c87d185e630bae6934cf34074]
+class cloop--><rect codeLine="26" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="73.6094" id="cloop" style="stroke:#A80036;stroke-width:1.5;" width="127" x="60" y="234"/><ellipse cx="75" cy="250" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M77.9688,255.6406 Q77.3906,255.9375 76.75,256.0781 Q76.1094,256.2344 75.4063,256.2344 Q72.9063,256.2344 71.5781,254.5938 Q70.2656,252.9375 70.2656,249.8125 Q70.2656,246.6875 71.5781,245.0313 Q72.9063,243.375 75.4063,243.375 Q76.1094,243.375 76.75,243.5313 Q77.4063,243.6875 77.9688,243.9844 L77.9688,246.7031 Q77.3438,246.125 76.75,245.8594 Q76.1563,245.5781 75.5313,245.5781 Q74.1875,245.5781 73.5,246.6563 Q72.8125,247.7188 72.8125,249.8125 Q72.8125,251.9063 73.5,252.9844 Q74.1875,254.0469 75.5313,254.0469 Q76.1563,254.0469 76.75,253.7813 Q77.3438,253.5 77.9688,252.9219 L77.9688,255.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="95" x="89" y="254.1543">HWControlLoop</text><line style="stroke:#A80036;stroke-width:1.5;" x1="61" x2="186" y1="266" y2="266"/><line style="stroke:#A80036;stroke-width:1.5;" x1="61" x2="186" y1="274" y2="274"/><ellipse cx="71" cy="285" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="27" x="80" y="288.2104">run()</text><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="68" y="294.8047"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="80" y="301.0151">update()</text><!--MD5=[ac9170f94cbc905b6c95156764499a34]
+class robot--><rect codeLine="33" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="73.6094" id="robot" style="stroke:#A80036;stroke-width:1.5;" width="144" x="501" y="234"/><ellipse cx="533.55" cy="250" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M536.5188,255.6406 Q535.9406,255.9375 535.3,256.0781 Q534.6594,256.2344 533.9563,256.2344 Q531.4563,256.2344 530.1281,254.5938 Q528.8156,252.9375 528.8156,249.8125 Q528.8156,246.6875 530.1281,245.0313 Q531.4563,243.375 533.9563,243.375 Q534.6594,243.375 535.3,243.5313 Q535.9563,243.6875 536.5188,243.9844 L536.5188,246.7031 Q535.8938,246.125 535.3,245.8594 Q534.7063,245.5781 534.0813,245.5781 Q532.7375,245.5781 532.05,246.6563 Q531.3625,247.7188 531.3625,249.8125 Q531.3625,251.9063 532.05,252.9844 Q532.7375,254.0469 534.0813,254.0469 Q534.7063,254.0469 535.3,253.7813 Q535.8938,253.5 536.5188,252.9219 L536.5188,255.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="73" x="551.45" y="254.1543">RobotDriver</text><line style="stroke:#A80036;stroke-width:1.5;" x1="502" x2="644" y1="266" y2="266"/><line style="stroke:#A80036;stroke-width:1.5;" x1="502" x2="644" y1="274" y2="274"/><ellipse cx="512" cy="285" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="118" x="521" y="288.2104">writeJointCommand()</text><ellipse cx="512" cy="297.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="521" y="301.0151">getJointPosition()</text><!--MD5=[ca62114f414f7d41b1f22a4a259eaa88]
+class servo--><rect codeLine="40" fill="#FEFECE" filter="url(#f1g8wowpne6sas)" height="73.6094" id="servo" style="stroke:#A80036;stroke-width:1.5;" width="103" x="705" y="306"/><ellipse cx="720" cy="322" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M720.1094,317.3438 L718.9531,322.4219 L721.2813,322.4219 L720.1094,317.3438 Z M718.625,315.1094 L721.6094,315.1094 L724.9688,327.5 L722.5156,327.5 L721.75,324.4375 L718.4688,324.4375 L717.7188,327.5 L715.2813,327.5 L718.625,315.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="71" x="734" y="326.1543">ServoDriver</text><line style="stroke:#A80036;stroke-width:1.5;" x1="706" x2="807" y1="338" y2="338"/><line style="stroke:#A80036;stroke-width:1.5;" x1="706" x2="807" y1="346" y2="346"/><ellipse cx="716" cy="357" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="64" x="725" y="360.2104">subscribe()</text><ellipse cx="716" cy="369.8047" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="725" y="373.0151">write()</text><!--MD5=[6fb2d8fd65db62ebd553f9635d5560b6]
+link base to interface--><path codeLine="51" d="M187.8447,354.9743 C213.5074,342.6002 243.5099,328.1336 271.3118,314.7281 " fill="none" id="base-interface" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="285.1832,308.0396,275.3391,308.3455,280.6794,310.2112,278.8137,315.5516,285.1832,308.0396" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="280.6794" x2="271.6718" y1="310.2112" y2="314.5545"/><ellipse cx="181.2857" cy="358.1369" fill="#FFFFFF" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="188.4918" x2="174.0797" y1="354.6622" y2="361.6115"/><line style="stroke:#A80036;stroke-width:1.0;" x1="184.7604" x2="177.8111" y1="365.3429" y2="350.9308"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="81" x="181.9069" y="372.215">inherits from</text><!--MD5=[b938278555d0712d7465b64726ce3f5d]
+reverse link cloop to interface--><path codeLine="52" d="M192.3248,271 C220.6044,271 253.5215,271 282.7959,271 " fill="none" id="cloop-backto-interface" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="187.1003,271,196.1003,275,192.1003,271,196.1003,267,187.1003,271" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a2109c499f02edc48f7ec3aed738bd29]
+link movetojoints to interface--><path codeLine="54" d="M213.8252,100.5163 C213.8252,100.5163 225.9793,108.1769 231,112 C271.5694,142.8923 307.5816,188.6904 331.5298,223.2104 " fill="none" id="movetojoints-interface" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="338.8718,233.9887,337.1109,224.2985,336.0569,229.8563,330.4991,228.8024,338.8718,233.9887" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="336.0569" x2="331.5531" y1="229.8563" y2="223.2446"/><polygon fill="#A80036" points="203.3868,94.5968,206.6328,101.036,213.8252,100.5163,210.5792,94.0771,203.3868,94.5968" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cb6c8c051da7eeecb117590879b9c6b4]
+link movetopose to interface--><path codeLine="55" d="M222.4383,195.2374 C222.4383,195.2374 228.5275,197.8801 231,199 C249.7052,207.4721 269.3621,217.5854 287.5956,227.5159 " fill="none" id="movetopose-interface" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="299.0443,233.8269,293.0935,225.9791,294.6655,231.4131,289.2315,232.9851,299.0443,233.8269" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="294.6655" x2="287.6595" y1="231.4131" y2="227.551"/><polygon fill="#A80036" points="211.3695,190.6026,215.359,196.6096,222.4383,195.2374,218.4488,189.2304,211.3695,190.6026" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[7eb27fd65edba117a57fb397c3506b28]
+link interface to robot--><path codeLine="57" d="M441.1689,271 C458.8667,271 477.6206,271 495.2599,271 " fill="none" id="interface-to-robot" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="500.696,271,491.696,267,495.696,271,491.696,275,500.696,271" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[011860afd925bc324920482d22fce31b]
+link robot to servoDriver--><path codeLine="59" d="M657.2606,271 C657.2606,271 681.1716,271 692.1012,271 C693.4674,271 694.8247,271 696.1717,271 C696.3401,271 696.5083,271 696.6763,271 " fill="none" id="robot-servoDriver" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="696.6763,271,687.6763,267,691.6763,271,687.6763,275,696.6763,271" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="645.2606,271,651.2606,275,657.2606,271,651.2606,267,645.2606,271" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bc8d6ddee63d3cf0b6f5543b02b66fd1]
+@startuml generic_driver_component_diagram
+  skinparam componentStyle uml2
+  skinparam defaultTextAlignment center
+
+  left to right direction
+
+  package "MoveIt Handlers" as moveit <<Folder>> {
+    class  "MoveJointsHandlerServer" as movetojoints{
+      -executeCallback()
+    }
+    class  "MoveToPoseHandlerServer" as movetopose{
+      -executeCallback()
+    }
+  }
+
+
+  package "Generic Hardware Interface" as gnHW <<Folder>> {
+    abstract class  "HWBase" as base{
+        +virtual read()
+        +update()
+        +virtual write()
+    }
+    interface  "GenericHWInterface" as interface{
+        +read()
+        +write()
+    }
+    class      "HWControlLoop" as cloop{
+        +run()
+        -update()
+    }
+  }
+
+  package "Generic Driver" as gnDriver <<Folder>> {
+    class "RobotDriver" as robot{
+    +writeJointCommand()
+    +getJointPosition()
+    }
+  }
+
+  package "Servo Driver" as servoDriver <<Folder>> {
+    abstract class  "ServoDriver" as servo{
+        +subscribe()
+        +write()
+    }
+  }
+
+
+
+  ' Connections between classes
+
+  ' Inside generic hardware
+  base "inherits from" +- -> interface
+  interface -up-> cloop
+  ' Moveit to hardware
+  movetojoints *- -> interface
+  movetopose *- -> interface
+  ' Hardware Interface to Robot Driver
+  interface - -> robot
+  ' Robot Driver TO TCP
+  robot *- -> servoDriver
+  
+  @enduml
+
+@startuml generic_driver_component_diagram
+  skinparam componentStyle uml2
+  skinparam defaultTextAlignment center
+
+  left to right direction
+
+  package "MoveIt Handlers" as moveit <<Folder>> {
+    class  "MoveJointsHandlerServer" as movetojoints{
+      -executeCallback()
+    }
+    class  "MoveToPoseHandlerServer" as movetopose{
+      -executeCallback()
+    }
+  }
+
+
+  package "Generic Hardware Interface" as gnHW <<Folder>> {
+    abstract class  "HWBase" as base{
+        +virtual read()
+        +update()
+        +virtual write()
+    }
+    interface  "GenericHWInterface" as interface{
+        +read()
+        +write()
+    }
+    class      "HWControlLoop" as cloop{
+        +run()
+        -update()
+    }
+  }
+
+  package "Generic Driver" as gnDriver <<Folder>> {
+    class "RobotDriver" as robot{
+    +writeJointCommand()
+    +getJointPosition()
+    }
+  }
+
+  package "Servo Driver" as servoDriver <<Folder>> {
+    abstract class  "ServoDriver" as servo{
+        +subscribe()
+        +write()
+    }
+  }
+
+
+
+
+  base "inherits from" +- -> interface
+  interface -up-> cloop
+  movetojoints *- -> interface
+  movetopose *- -> interface
+  interface - -> robot
+  robot *- -> servoDriver
+  
+  @enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 11:36:27 EET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

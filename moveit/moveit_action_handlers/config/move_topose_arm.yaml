@@ -1,0 +1,4 @@
+move_group: arm
+action_server_name: move_topose_action_server/arm/action
+base_link_name: arm_footprint
+ee_link_name: ee_base

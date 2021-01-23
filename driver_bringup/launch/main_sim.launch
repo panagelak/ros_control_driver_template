@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- sim bringup-->
+  <include file="$(find driver_bringup)/launch/sim_bringup.launch">
+    
+    <arg name="robot" value="generic_arm"/>
+    <arg name="sim" value="true"/>
+
+    <arg name="world" value="empty"/> <!--empty, box_world-->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+
+  </include>
+
+  <!-- start move group-->
+  <include file="$(find moveit_interface)/launch/moveit.launch"/>
+
+  <!-- set start position if you want-->
+  <!--node name="Set_Start_Arm_Pos" pkg="moveit_interface" type="set_start_pos.py" respawn="false" output="screen"/-->
+
+  <!-- rviz -->
+  <arg name="rviz_config" default="basic"/>
+  <include file="$(find arm_viz)/launch/rviz.launch">
+    <arg name="config" value="$(arg rviz_config)" />
+  </include>
+
+
+</launch>

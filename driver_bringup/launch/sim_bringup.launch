@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- robot parameters -->
+  <arg name="sim" default="true"/>
+  <arg name="robot" default="generic_arm"/>
+  
+  <!--Gazebo parameters-->
+  <arg name="world" default="empty"/> <!--empty, box_world-->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- launch the gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find driver_bringup)/worlds/$(arg world).world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- send urdf to param server -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find arm_description)/urdf/robots/$(arg robot)/$(arg robot)_robot.urdf.xacro' sim:=$(arg sim)"
+  />
+
+  <!--Start robot state publisher -->
+  <node name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+  />
+
+  <!--spawn the robot in gazebo world-->  
+  <node name="urdf_spawner_$(arg robot)" pkg="gazebo_ros" type="spawn_model" respawn="false" 
+  output="screen" args="-urdf -param robot_description -model generic_arm -z 0.0"/>
+
+  <!-- Load all the controllers configurations to the param server-->
+  <rosparam file="$(find driver_bringup)/config/sim_controllers.yaml" command="load"/>
+
+  <!-- controller manager spawn default controllers -->
+  <node name="controller_spawner" 
+        pkg="controller_manager" 
+        type="controller_manager" 
+        respawn="false" output="screen" 
+        args="spawn 
+              joint_state_controller  
+              arm_controller 
+              gripper_controller"
+  />
+
+  <!-- controller manager loader (need to call service to activate) - used for moveit_jog -->
+  <node name="controller_loader" 
+        pkg="controller_manager" 
+        type="controller_manager" 
+        respawn="false" output="screen" 
+        args="load
+              joint_group_arm_controller"
+  />
+
+
+</launch>
+
+

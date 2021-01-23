@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>driver_bringup</name>
+  <version>0.0.0</version>
+  <description>The driver_bringup package</description>
+
+  <maintainer email="panagiotis.angelakis.robot@gmail.com">Panagiotis</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- robot parameters -->
+  <arg name="sim" default="false"/>
+  <arg name="robot" default="generic_arm"/> 
+  
+  <!-- send urdf to param server -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find arm_description)/urdf/robots/$(arg robot)/$(arg robot)_robot.urdf.xacro' sim:=$(arg sim)"
+  />
+
+  <!--Start robot state publisher -->
+  <node name="robot_state_publisher" 
+        pkg="robot_state_publisher" 
+        type="robot_state_publisher" 
+  />
+
+  <!-- Load all the controllers configurations to the param server-->
+  <rosparam file="$(find driver_bringup)/config/real_controllers.yaml" command="load"/>
+
+  <!-- Start the Hardware Interface Node of the Robot -->
+  <node name="generic_hardware_interface" 
+        pkg="generic_hardware_interface" 
+        type="generic_hardware_interface_node" 
+/>
+
+  <!-- controller manager spawn default controllers -->
+  <node name="controller_spawner" 
+        pkg="controller_manager" 
+        type="controller_manager" 
+        respawn="false" output="screen" 
+        args="spawn 
+              joint_state_controller  
+              arm_controller 
+              gripper_controller"
+  />
+
+  <!-- controller manager loader (need to call service to activate) - used for moveit_jog -->
+  <node name="controller_loader" 
+        pkg="controller_manager" 
+        type="controller_manager" 
+        respawn="false" output="screen" 
+        args="load
+              joint_group_arm_controller"
+  />
+
+  <!-- Robot specific API -->
+
+  <!-- Load the PCA9685 Driver IF you are using an I2C PCA9685 Device on e.g Jetson Nano or PC Directly-->
+  <!-- change default parameters from source-->
+  <!--node name="PCA9685_driver" 
+        pkg="pwm_pca9685" 
+        type="pca9685_node" 
+        respawn="false" 
+        output="screen"/-->
+
+  <!-- OR -->
+
+  <!-- Start rosserial Arduino node -->
+  <!--node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" type="string" value="/dev/ttyACM0"/>
+    <param name="baud" type="int" value="57600"/>
+  </node-->
+
+</launch>

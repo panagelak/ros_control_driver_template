@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- MoveToPose Action Server -MoveIt -->
+    <node pkg="moveit_action_handlers" type="move_topose_action_server_node" name="move_topose_arm_action_server_node" output="screen">
+        <rosparam file="$(find moveit_action_handlers)/config/move_topose_arm.yaml" command="load"/>
+    </node>
+    
+
+</launch>
+

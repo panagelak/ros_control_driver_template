@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: arm_description
+    relative_path: urdf/robots/generic_arm/generic_arm_robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/generic_arm.srdf
+  CONFIG:
+    author_name: Panagiotis
+    author_email: panagiotis.angelakis.robot@gmail.com
+    generated_timestamp: 1593283279

@@ -1,0 +1,90 @@
+# Settings for ros_control control loop
+generic_hardware_control_loop:
+  loop_hz: &loop_hz 50
+  cycle_time_error_threshold: 0.01
+
+# Settings for ros_control hardware interface
+generic_hardware_interface:
+   debug_mode: true
+   has_feedback: false
+   joints: &robot_joints
+     - shoulder_pan_joint
+     - shoulder_lift_joint
+     - elbow_joint
+     - wrist_1_joint
+     - wrist_2_joint
+     - wrist_3_joint
+     - finger1_joint
+     - finger2_joint # add this joint too for hardware interface 
+                     # Rviz two joints -> 1 servo listen to 1 joint for mapping
+
+
+# Settings for generic robot driver
+generic_robot_driver:
+   has_close_loop: true
+   # location of servos on the board
+   servo_pins: [0, 1, 2, 3, 4, 5, 6]
+   # joint lower limits + 1 finger (gripper has two independent fingers -> 1 servo)
+   # map joint range into servo range
+   joint_lower: [-1.57, -1.57, -0.7535, -1.57, -1.57, -1.57, 0.0]
+   joint_upper: [1.57, 1.57, 0.7535, 1.57, 1.57, 1.57, 0.02]
+   servo_lower: [0, 0, -45, 0, 0, 0, 0]
+   servo_upper: [180, 180, 45, 180, 180, 180, 180]
+   directions_reverse: [false, false, false, false, false, false, false]
+   offsets: [0, 0, 0, 0, 0, 0, 0]
+
+# Publish all joint states ----------------------------------
+joint_state_controller:
+   type:         joint_state_controller/JointStateController
+   publish_rate: *loop_hz
+
+# Joint Trajectory Controller - position based -------------------------------
+# For detailed explanations of parameter see http://wiki.ros.org/joint_trajectory_controller
+arm_controller:
+   type: position_controllers/JointTrajectoryController
+   joints:
+     - shoulder_pan_joint
+     - shoulder_lift_joint
+     - elbow_joint
+     - wrist_1_joint
+     - wrist_2_joint
+     - wrist_3_joint
+   constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      shoulder_pan_joint: {trajectory: 0.2, goal: 0.1}
+      shoulder_lift_joint: {trajectory: 0.2, goal: 0.1}
+      elbow_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_1_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_2_joint: {trajectory: 0.2, goal: 0.1}
+      wrist_3_joint: {trajectory: 0.2, goal: 0.1}
+   stop_trajectory_duration: 0.5
+   state_publish_rate: *loop_hz  # Frequency (in Hz) at which the controller state is published.
+   action_monitor_rate: 20 # Frequency (in Hz) at which the action goal status is monitored. This is an advanced parameter that should not require changing.
+
+# Joint Trajectory Controller - position based -------------------------------
+# For detailed explanations of parameter see http://wiki.ros.org/joint_trajectory_controller
+gripper_controller:
+   type: position_controllers/JointTrajectoryController
+   joints: 
+     - finger1_joint
+     - finger2_joint
+   constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      finger1_joint: {trajectory: 0.2, goal: 0.1}
+      finger2_joint: {trajectory: 0.2, goal: 0.1}
+   stop_trajectory_duration: 0.5
+   state_publish_rate: *loop_hz  # Frequency (in Hz) at which the controller state is published.
+   action_monitor_rate: 20 # Frequency (in Hz) at which the action goal status is monitored. This is an advanced parameter that should not require changing.
+
+# Used for moveit_jog
+joint_group_arm_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+     - shoulder_pan_joint
+     - shoulder_lift_joint
+     - elbow_joint
+     - wrist_1_joint
+     - wrist_2_joint
+     - wrist_3_joint

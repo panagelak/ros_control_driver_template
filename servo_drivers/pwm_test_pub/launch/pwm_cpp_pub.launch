@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Publishes a topic to the pwm driver-->
+    <node pkg="pwm_test_pub" type="pwm_test_cpp_pub_node" name="pwm_test_cpp_pub_node" output="screen"/>
+
+</launch>
+
