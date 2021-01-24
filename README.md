@@ -21,6 +21,7 @@
   - [How to use the Generic ROS Driver](#how-to-use-the-generic-ros-driver)
     - [Simulation](#simulation)
     - [Real Robot](#real-robot)
+  - []
 
 ## Introduction
 
@@ -41,6 +42,16 @@ Demo pca9685 drivers subscribe to the command topic, either using rosserial with
 A high level component diagram of the driver can be seen below
 
 ![](doc_data/generic_driver_component_diagram.svg)
+
+Also look at his relevant package!!
+
+[ros_control_boilerplate](https://github.com/PickNikRobotics/ros_control_boilerplate)
+
+Note this files are under license from this project
+
+[generic_hw_control_loop.h](https://github.com/panagelak/ros_control_driver_template/blob/main/generic_driver/generic_hardware_interface/include/generic_hardware_interface/generic_hw_control_loop.h)
+
+[generic_hw_control_loop.cpp](https://github.com/panagelak/ros_control_driver_template/blob/main/generic_driver/generic_hardware_interface/src/generic_hw_control_loop.cpp)
 
 ### Goals
 
@@ -192,5 +203,56 @@ roslaunch driver_bringup rosserial.launch
 ```
 Then if you want you can start rosserial from the real_bringup launch file
 
+## How to send Jog Commands - Reactive control
 
+Moveit provides a package to send TwistStamped velocity targets for the end effector of the robot
 
+You can change the config files in the moveit_jog_arm package
+
+Start the jog server
+
+```bash
+# real
+roslaunch moveit_jog_arm jog_server.launch
+# for sim
+roslaunch moveit_jog_arm jog_server_sim.launch
+```
+
+It requires to change the controllers to joint_group controllers, also it wants a joint_states topic with only the joints of the arm a node that subscribes to /joint_states and punlishes /joint_states/arm has been implemented (get started from the jog_server.launch)
+
+To change the controller (is already loaded)
+
+```bash
+rosservice call /controller_manager/switch_controller "
+start_controllers: ['joint_group_arm_controller']
+stop_controllers: ['arm_controller']
+strictness: 2
+start_asap: false
+timeout: 0.1" 
+```
+
+To switch back
+
+```bash
+rosservice call /controller_manager/switch_controller "
+start_controllers: ['arm_controller']
+stop_controllers: ['joint_group_arm_controller']
+strictness: 2
+start_asap: false
+timeout: 0.1" 
+```
+
+Now start a teleop node 
+
+### How to use teleop node
+
+```bash
+# To start the teleop node
+rosrun moveit_interface arm_teleop
+```
+
+q, w, e, r, t, y -> +lin.x, +lin.y, +lin.z, +ang.x, +ang.y, +ang.z respectively
+
+a, s, d, f, g, h -> -lin.x, -lin.y, -lin.z, -ang.x, -ang.y, -ang.z respectively
+
+i : increase speed, k : decrease speed, l : stop movement

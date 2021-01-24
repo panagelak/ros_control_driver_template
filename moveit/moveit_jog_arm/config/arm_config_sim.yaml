@@ -1,7 +1,7 @@
 ###############################################
 # Modify all parameters related to jogging here
 ###############################################
-use_gazebo: false # Whether the robot is started in a Gazebo simulation environment (Note: a redundant trajectory point will be added in cartesianJogCalcs computation.)
+use_gazebo: true # Whether the robot is started in a Gazebo simulation environment (Note: a redundant trajectory point will be added in cartesianJogCalcs computation.)
 
 ## Properties of incoming commands
 command_frame:  world  # TF frame that incoming cmds are given in

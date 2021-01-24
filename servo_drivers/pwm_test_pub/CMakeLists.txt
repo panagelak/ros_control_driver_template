@@ -49,7 +49,7 @@ target_link_libraries(pwm_test_cpp_pub_node
 )
 
 # python
-catkin_install_python(PROGRAMS nodes/pwm_test_python_pub_node.py
+catkin_install_python(PROGRAMS nodes/pub_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

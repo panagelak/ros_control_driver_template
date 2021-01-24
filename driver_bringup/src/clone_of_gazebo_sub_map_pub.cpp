@@ -1,205 +1,142 @@
-#include <ros/ros.h>
-#include <sensor_msgs/JointState.h>
-#include <std_msgs/Float32.h>
-#include <std_msgs/Int32.h>
+#include "std_msgs/Int32MultiArray.h"
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/MultiArrayLayout.h"
-#include "std_msgs/Int32MultiArray.h"
+#include <ros/ros.h>
+#include <sensor_msgs/JointState.h>
 
-class arduinoHandler {
+// Definition
+class mapJointStateHandler {
 public:
-  arduinoHandler() {
-    js_sub = nh.subscribe("/joint_states", 10, &arduinoHandler::jsCB, this);
-    activate_sub = nh.subscribe("/activate_arm", 10,
-                                &arduinoHandler::activate_armCB, this);
-    arm_pub = nh.advertise<std_msgs::Int32MultiArray>("/command", 10);
-  }
-  int map(float inValue, float minOutRange, float maxOutRange) {
-    float minInRange = -1.57;
-    float maxInRange = 1.57;
-    float x = (inValue - minInRange) / (maxInRange - minInRange);
-    float result = minOutRange + (maxOutRange - minOutRange) * x;
-    return int(result);
-  }
+  // constructor
+  mapJointStateHandler(ros::NodeHandle &nh);
+  // map
+  float map(float inValue, float minInRange, float maxInRange, float minOutRange, float maxOutRange,
+            bool reverse_direction);
+  // hard limit
+  void limit_to_range(float &inValue, float minRange, float maxRange);
+  // callback
+  void jsCB(const sensor_msgs::JointState::ConstPtr &joint_state);
 
-  int map_gripper(float inValue, float minOutRange, float maxOutRange) {
-    // joint_state goes from 0 to 0.02 we map 0 to upper and 0.02 to lower
-    float minInRange = 0.0;
-    float maxInRange = 0.02;
-    float x = (inValue - minInRange) / (maxInRange - minInRange);
-    float result = minOutRange + (maxOutRange - minOutRange) * x;
-    return int(result);
-  }
-  int limit_to_range(int inValue, int minRange, int maxRange) {
-    if (inValue > maxRange) {
-      inValue = maxRange;
-    }
-    if (inValue < minRange) {
-      inValue = minRange;
-    }
-  }
-  void activate_armCB(const std_msgs::Int32::ConstPtr &act_arm) {
-    std_msgs::Int32MultiArray arm_array;
-    arm_array.data.clear();
-    allow_pub = act_arm->data;
-    if (allow_pub) {
-      arm_array.data.push_back(4900);
-      arm_array.data.push_back(2000);
-      arm_array.data.push_back(7000);
-      arm_array.data.push_back(5000);
-      arm_array.data.push_back(2000);
-      arm_array.data.push_back(5150);
-      arm_array.data.push_back(4000);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      arm_array.data.push_back(-1);
-      prev_servo_0 = 4900;
-      prev_servo_1 = 2000;
-      prev_servo_2 = 7000;
-      prev_servo_3 = 5000;
-      prev_servo_4 = 2000;
-      prev_servo_5 = 5150;
-      prev_servo_6 = 4000;
-      arm_pub.publish(arm_array);
-    }
-  }
+private:
+  // parameters
+  ros::NodeHandle nh_;
+  ros::Subscriber js_sub_;
+  ros::Publisher command_pub_;
+  // configuration!
 
-  void jsCB(const sensor_msgs::JointState::ConstPtr &joint_state) {
-    std_msgs::Int32MultiArray arm_array;
+  // ros lower joint limits
+  std::vector<float> joint_lower_ = {-1.57, -1.57, -0.7535, -1.57, -1.57, -1.57, 0.0};
+  // ros upper joint limits
+  std::vector<float> joint_upper_ = {1.57, 1.57, 0.7535, 1.57, 1.57, 1.57, 0.02};
+  // servo command lower limits
+  std::vector<float> servo_lower_ = {0, 0, -45, 0, 0, 0, 0};
+  // servo command upper limits
+  std::vector<float> servo_upper_ = {180, 180, 45, 180, 180, 180, 180};
+  // servo command offsets
+  std::vector<float> offsets_ = {0, 0, 0, 0, 0, 0, 0};
+  // reverse direction
+  std::vector<bool> reverse_direction_ = {false, false, false, false, false, false, false};
+  // location on pwm driver board (16 slots)
+  std::vector<int> servo_pins_ = {0, 1, 2, 3, 4, 5, 6};
+  // joint names in the same order as servo pins
+  // joint state topic has names in alphabetical order
+  std::vector<std::string> j_names_order_ = {"shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",
+                                             "wrist_1_joint",      "wrist_2_joint",       "wrist_3_joint",
+                                             "finger1_joint"};
+  // servos 1 and 2 depedented
+  bool has_close_loop_ = true;
 
-    arm_array.data.clear();
-
-    curr_0 = joint_state->position[1];
-    curr_1 = joint_state->position[2];
-    curr_2 = joint_state->position[3];
-    curr_3 = joint_state->position[4];
-    curr_4 = joint_state->position[5];
-    curr_5 = joint_state->position[6];
-    curr_6 = joint_state->position[7];
-
-    bool cond_0 = fabs(prev_0 - curr_0) < 0.001;
-    bool cond_1 = fabs(prev_1 - curr_1) < 0.001;
-    bool cond_2 = fabs(prev_2 - curr_2) < 0.001;
-    bool cond_3 = fabs(prev_3 - curr_3) < 0.001;
-    bool cond_4 = fabs(prev_4 - curr_4) < 0.001;
-    bool cond_5 = fabs(prev_5 - curr_5) < 0.001;
-    bool cond_6 = fabs(prev_6 - curr_6) < 0.001;
-
-    if (cond_0 && cond_1 && cond_2 && cond_3 && cond_4 && cond_5 && cond_6) {
-      if (allow_pub) {
-        arm_array.data.push_back(prev_servo_0 + up_down);
-        arm_array.data.push_back(prev_servo_1 + up_down);
-        arm_array.data.push_back(prev_servo_2 + up_down);
-        arm_array.data.push_back(prev_servo_3 + up_down);
-        arm_array.data.push_back(prev_servo_4 + up_down);
-        arm_array.data.push_back(prev_servo_5 + up_down);
-        arm_array.data.push_back(prev_servo_6 + up_down);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_array.data.push_back(-1);
-        arm_pub.publish(arm_array);
-      }
-      up_down = -up_down;
-      return;
-    }
-
-    int servo_0 = this->map(curr_0, 1600, 8200);
-    int servo_1 = this->map(curr_1, 2000, 8300);
-    // helper for dpedent link_2
-    int helper =
-        (8300 - servo_1 + 2750); // link1 5150 -> link2 5900 and reverse
-
-    int servo_2 = helper + 1.1 * (1400 - this->map(curr_2, -1440, 1440));
-
-    int servo_3 = this->map(curr_3, 1800, 8200);
-    int servo_4 = this->map(curr_4, 2000, 8300);
-    int servo_5 = this->map(curr_5, 2000, 8300);
-    int servo_6 = this->map_gripper(curr_6, 4000, 7500);
-
-    if (fabs(servo_2 - helper) > 1400) {
-      if (servo_2 > helper) {
-        servo_2 = helper + 1400;
-      } else {
-        servo_2 = helper - 1400;
-      }
-    }
-    //servo_0 = limit_to_range(servo_0, 1600, 8200);
-    //servo_2 = limit_to_range(servo_2, 1500, 9900);
-    //servo_1 = limit_to_range(servo_1, 2000, 8300);
-    //servo_3 = limit_to_range(servo_3, 1800, 8200);
-    //servo_4 = limit_to_range(servo_4, 2000, 8300);
-    //servo_5 = limit_to_range(servo_5, 2000, 8300);
-    //servo_6 = limit_to_range(servo_6, 4000, 7500);
-
-    arm_array.data.push_back(servo_0);
-    arm_array.data.push_back(servo_1);
-    arm_array.data.push_back(servo_2);
-    arm_array.data.push_back(servo_3);
-    arm_array.data.push_back(servo_4);
-    arm_array.data.push_back(servo_5);
-    arm_array.data.push_back(servo_6);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    arm_array.data.push_back(-1);
-    if (allow_pub) {
-      arm_pub.publish(arm_array);
-    }
-
-    prev_0 = curr_0;
-    prev_1 = curr_1;
-    prev_2 = curr_2;
-    prev_3 = curr_3;
-    prev_4 = curr_4;
-    prev_5 = curr_5;
-    prev_6 = curr_6;
-
-    prev_servo_0 = servo_0;
-    prev_servo_1 = servo_1;
-    prev_servo_2 = servo_2;
-    prev_servo_3 = servo_3;
-    prev_servo_4 = servo_4;
-    prev_servo_5 = servo_5;
-    prev_servo_6 = servo_6;
-  }
-
-protected:
-  ros::NodeHandle nh;
-  ros::Subscriber js_sub;
-  ros::Subscriber activate_sub;
-  ros::Publisher arm_pub;
-  float curr_0 = 0, curr_1 = 0, curr_2 = 0, curr_3 = 0, curr_4 = 0, curr_5 = 0,
-        curr_6 = 0;
-  float prev_0 = 0, prev_1 = 0, prev_2 = 0, prev_3 = 0, prev_4 = 0, prev_5 = 0,
-        prev_6 = 0;
-
-  float prev_servo_0 = 0, prev_servo_1 = 0, prev_servo_2 = 0, prev_servo_3 = 0,
-        prev_servo_4 = 0, prev_servo_5 = 0, prev_servo_6 = 0;
-
-  int up_down = 1;
-  int allow_pub = 0;
+  // command message
+  std_msgs::Int32MultiArray command_msg_;
 };
 
+// function code
+mapJointStateHandler::mapJointStateHandler(ros::NodeHandle &nh) : nh_(nh) {
+  // joint states sub
+  js_sub_ = nh_.subscribe("/joint_states", 10, &mapJointStateHandler::jsCB, this);
+  command_pub_ = nh.advertise<std_msgs::Int32MultiArray>("/command", 10);
+  // command msg init
+  command_msg_.data.resize(16, -1);
+}
+
+void mapJointStateHandler::limit_to_range(float &inValue, float minRange, float maxRange) {
+  if (inValue > maxRange) {
+    inValue = maxRange;
+  }
+  if (inValue < minRange) {
+    inValue = minRange;
+  }
+}
+
+float mapJointStateHandler::map(float inValue, float minInRange, float maxInRange, float minOutRange, float maxOutRange,
+                                bool reverse_direction) {
+  float x = (inValue - minInRange) / (maxInRange - minInRange);
+  float result = minOutRange + (maxOutRange - minOutRange) * x;
+  if (reverse_direction)
+    return maxOutRange - result;
+  return result;
+}
+
+void mapJointStateHandler::jsCB(const sensor_msgs::JointState::ConstPtr &joint_state) {
+
+  // for every pin
+  for (size_t i = 0; i < servo_pins_.size(); i++) {
+    // find joint name pos in joint state topic
+    int pos;
+    for (size_t j = 0; j < joint_state->name.size(); j++) {
+      if (j_names_order_[i] == joint_state->name[j]) {
+        pos = j;
+        break;
+      }
+    }
+    // get ros pos
+    float j_pos = joint_state->position[pos];
+    // map it
+    float output =
+        this->map(j_pos, joint_lower_[i], joint_upper_[i], servo_lower_[i], servo_upper_[i], reverse_direction_[i]);
+    command_msg_.data[servo_pins_[i]] = (int)output;
+  }
+
+  // TRICK FOR Close loop
+  
+  // if Depedented link
+  // many diy robots have a close kinematic loop between the shoulder lift and elbow lift joints
+  // in the urdf we assume that they are indepededent so here we need to do a trick
+  // if we move servo 1 and servo 2 together the robot will move as if the servos are indepedent
+  // servo 1 and servo2 probably are oriented in opposite manners so they will probably need to have
+  // opposite directions
+  // so we need to locate a helper variable that will move the servo 2 together with the 1
+  // e.g servo 1 = 90 and servo 2 = 90 form orthogonal angle -> offset_for_depedented 0
+  // then with e.g servo 1 = 110 and servo 2 = 70 will again form orthogonal angle
+  // then servo 2 can move if servo 1 = 90 in  the range (50- 130)
+  // so the lower and upper servo commands should be -40 , +40
+  if (has_close_loop_) {
+    // helper : reverse of servo 1 + offset_for_depedented to get a position of servo 2 relative to servo 1
+    int helper = int(servo_upper_[1] - command_msg_.data[servo_pins_[1]]) + offsets_[2];
+    // if we substitute this helper to the servo 2 the elbow must remain in a constant
+    // angle with shoulder while the shoulder moves e.g we made them indepedent
+
+    // servo_command.data[servo_pins[2]] = helper;
+
+    // Notice how on the servo limits we have limits of the servo 2 relative to the position of servo 1
+
+    // Now add to the servo 2 command the helper
+    command_msg_.data[servo_pins_[2]] += helper;
+  }
+
+  // Publish the message
+  command_pub_.publish(command_msg_);
+
+
+}
+
+// Main Ros node
+
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "driver_to_arduino");
-  arduinoHandler handler;
+  ros::init(argc, argv, "map_joint_states_to_command");
+  ros::NodeHandle nh;
+  // instanciate object
+  mapJointStateHandler handler(nh);
   ros::spin();
   return 0;
 }

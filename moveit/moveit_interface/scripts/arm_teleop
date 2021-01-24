@@ -103,8 +103,8 @@ def vels(speed_x, speed_y, speed_z, turn_x, turn_y, turn_z):
 if __name__ == "__main__":
     settings = termios.tcgetattr(sys.stdin)
 
-    rospy.init_node('larm_teleop')
-    pub = rospy.Publisher('/larm_twist_cmd', TwistStamped, queue_size=5)
+    rospy.init_node('arm_teleop')
+    pub = rospy.Publisher('/arm_twist_cmd', TwistStamped, queue_size=5)
 
     x = 0
     y = 0

@@ -6,7 +6,7 @@
 // hardware interface pointer
 boost::shared_ptr<generic_hardware_interface::GenericHardwareInterface> hw_interface_ptr;
 // control loop pointer
-boost::shared_ptr<generic_hardware_control_loop::GenericHWControlLoop> hw_control_loop_ptr;
+boost::shared_ptr<ros_control_boilerplate::GenericHWControlLoop> hw_control_loop_ptr;
 
 // Interrupt signal
 void signalHandler(int signum) {
@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
   // Pass the base hardware interface into the control loop object
   // Creates the controller manager
   // Calls read() -> update() -> write() with monotonic time
-  hw_control_loop_ptr.reset(new generic_hardware_control_loop::GenericHWControlLoop(nh, hw_interface_ptr));
+  hw_control_loop_ptr.reset(new ros_control_boilerplate::GenericHWControlLoop(nh, hw_interface_ptr));
   // Start the control loop
   hw_control_loop_ptr->run(); // Blocks until shutdown signal received
 
