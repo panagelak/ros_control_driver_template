@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+
+  <!-- Start PCA9685 I2c driver -->
+  <node name="pca9685_driver" 
+        pkg="pwm_pca9685" 
+        type="pca9685_node" 
+        respawn="false" 
+        output="screen"/>
+
+</launch>

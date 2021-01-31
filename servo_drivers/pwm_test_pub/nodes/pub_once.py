@@ -18,23 +18,17 @@ class pwmTestPythonPub(object):
         self._freq = 50
         self._rate = rospy.Rate(self._freq)
 
-        self._start_range = 6000
-        self._end_range = 7000
-        self._step = 200  # each second
-        self._dir = 1
-
-        # choose num of the servo in the board
-        self._pin = 10
-        self._msg.data[self._pin] = self._start_range
-
+        #self._msg.data[9] = 6000
+        self._msg.data[10] = 6000
+        #self._msg.data[11] = 6000
+        #self._msg.data[12] = 6000
+        #self._msg.data[13] = 6000
+        #self._msg.data[14] = 6000
+        #self._msg.data[15] = 6000
     def run(self):
         while not rospy.is_shutdown():
             # publish message
             self._pub.publish(self._msg)
-            if(self._msg.data[self._pin] > self._end_range or self._msg.data[self._pin] < self._start_range):
-               self._dir *= -1
-            self._msg.data[self._pin] += self._dir * \
-               self._start_range / self._freq
             self._rate.sleep()
 
 
