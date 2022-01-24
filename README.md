@@ -1,10 +1,11 @@
 # Generic ROS Driver
 
-## Collaborators
+## Contributors
 
 [Christos Gkournelos](https://github.com/cgkournelos)
 
-[Konstantinos Lotsaris](https://github.com/lotsarisk)
+[Panagiotis Angelakis](https://github.com/panagelak)
+
 
 ## Table of Contents
 
